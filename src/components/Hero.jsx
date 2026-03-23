@@ -122,7 +122,7 @@ const Hero = () => {
             <Magnetic>
               <a 
                 href="#projects" 
-                className="px-8 py-4 rounded-sm bg-gradient-to-br from-accent to-accent-hover text-background font-medium hover:scale-[1.02] transition-transform duration-300 shadow-[0_40px_80px_rgba(212,149,106,0.06)]"
+                className="inline-block text-center w-full sm:w-auto px-8 py-4 rounded-sm bg-gradient-to-br from-accent to-accent-hover text-background font-medium hover:scale-[1.02] transition-transform duration-300 shadow-[0_40px_80px_rgba(212,149,106,0.06)]"
               >
                 View My Work
               </a>
@@ -130,7 +130,7 @@ const Hero = () => {
             <Magnetic>
               <a 
                 href="#contact" 
-                className="px-8 py-4 rounded-sm border border-primary/30 text-primary font-medium hover:border-primary/50 hover:bg-surface-light transition-all duration-300"
+                className="inline-block text-center w-full sm:w-auto px-8 py-4 rounded-sm border border-primary/30 text-primary font-medium hover:border-primary/50 hover:bg-surface-light transition-all duration-300"
               >
                 Get in Touch
               </a>
