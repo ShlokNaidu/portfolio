@@ -24,7 +24,11 @@ const Contact = () => {
           <div className="flex items-center gap-8 mb-16">
             <Magnetic>
               <a 
-                href="mailto:shlok16naidu@gmail.com" 
+                href="mailto:shlok16naidu@gmail.com"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('https://mail.google.com/mail/?view=cm&fs=1&to=shlok16naidu@gmail.com', '_blank');
+                }}
                 className="w-12 h-12 rounded-full bg-surface flex items-center justify-center text-secondary hover:text-accent hover:bg-surface-light border border-white/5 transition-all duration-300 pointer-events-auto"
                 aria-label="Email"
               >

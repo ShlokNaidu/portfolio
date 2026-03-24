@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, onOpenCaseStudy }) => {
   const cardRef = useRef(null);
   const [style, setStyle] = useState({ rotateX: 0, rotateY: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -121,20 +121,29 @@ const ProjectCard = ({ project }) => {
             ))}
           </div>
           
-          {project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer" 
-              className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors font-medium text-sm"
+          <div className="flex items-center justify-between w-full relative z-20">
+            <button
+              onClick={onOpenCaseStudy}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-background transition-all font-medium text-sm"
             >
-              View Project <ExternalLink size={16} />
-            </a>
-          ) : (
-            <span className="inline-flex items-center gap-2 text-secondary opacity-50 cursor-not-allowed text-sm">
-              Private Repository <ExternalLink size={16} />
-            </span>
-          )}
+              Case Study
+            </button>
+
+            {project.link ? (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors font-medium text-sm"
+              >
+                View App <ExternalLink size={16} />
+              </a>
+            ) : (
+              <span className="inline-flex items-center gap-2 text-secondary opacity-50 cursor-not-allowed text-sm">
+                Private <ExternalLink size={16} />
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>
