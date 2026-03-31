@@ -138,6 +138,15 @@ const ProjectCard = ({ project, onOpenCaseStudy }) => {
               >
                 View App <ExternalLink size={16} />
               </a>
+            ) : project.github ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-primary hover:text-accent transition-colors font-medium text-sm"
+              >
+                Source Code <ExternalLink size={16} />
+              </a>
             ) : (
               <span className="inline-flex items-center gap-2 text-secondary opacity-50 cursor-not-allowed text-sm">
                 Private <ExternalLink size={16} />
