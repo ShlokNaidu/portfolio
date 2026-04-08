@@ -11,22 +11,33 @@ const ProjectOverlay = ({ isOpen, onClose, project }) => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   // Lock body scroll when overlay is open to prevent background scrolling
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = '';
+      // Cleanup for unmount; AnimatePresence handles the standard exit
+      if (!isOpen) { 
+        document.body.style.overflow = '';
+      }
     };
   }, [isOpen]);
 
   if (!mounted) return null;
 
   return createPortal(
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={() => { document.body.style.overflow = ''; }}>
       {isOpen && project && (
         <motion.div
           initial={{ y: "100%" }}

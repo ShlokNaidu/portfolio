@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import TextReveal from './TextReveal';
 
@@ -41,16 +42,29 @@ const About = () => {
 
               <div className="mt-12">
                 <h3 className="text-sm uppercase tracking-wider text-accent font-medium mb-6">Core Technologies</h3>
-                <div className="flex flex-wrap gap-3">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  variants={{
+                    visible: { transition: { staggerChildren: 0.05 } }
+                  }}
+                  className="flex flex-wrap gap-3"
+                >
                   {techTags.map((tag, idx) => (
-                    <span 
+                    <motion.span 
                       key={idx} 
-                      className="px-4 py-2 rounded-full bg-surface-light text-primary text-sm shadow-sm border border-accent/10 hover:border-accent/30 transition-colors"
+                      variants={{
+                        hidden: { opacity: 0, y: 15 },
+                        visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+                      }}
+                      whileHover={{ scale: 1.05, y: -2, borderColor: "rgba(212,149,106,0.4)" }}
+                      className="px-4 py-2 rounded-full bg-surface-light text-primary text-sm shadow-sm border border-accent/10 transition-colors cursor-none"
                     >
                       {tag}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
