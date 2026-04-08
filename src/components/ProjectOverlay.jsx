@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import Magnetic from './Magnetic';
 
 const ProjectOverlay = ({ isOpen, onClose, project }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Lock body scroll when overlay is open to prevent background scrolling
   useEffect(() => {
     if (isOpen) {
@@ -16,7 +23,9 @@ const ProjectOverlay = ({ isOpen, onClose, project }) => {
     };
   }, [isOpen]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && project && (
         <motion.div
@@ -120,7 +129,8 @@ const ProjectOverlay = ({ isOpen, onClose, project }) => {
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
